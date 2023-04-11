@@ -17,7 +17,7 @@ UserRouter.get("/", async (req, res) => {
 
 //register
 
-UserRouter.post("/register", async (req, res) => {
+UserRouter.post("/signup", async (req, res) => {
   const {  email, password } = req.body;
   let logindata = await UserModel.find({ email: email })
   try {
@@ -66,11 +66,11 @@ UserRouter.post("/login", async (req, res) => {
 
           res.send({ massege: "login successful", token: token });
         } else {
-          res.send({ massege: "something went wrong" });
+          res.send({ massege: "Invalid Credentials" });
         }
       });
     } else {
-      res.send({ massege: "wrong coredentials" });
+      res.send({ massege: "Invalid Credentials" });
     }
   } catch (error) {
     res.send({ massege: "something went wrong" });
